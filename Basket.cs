@@ -5,7 +5,6 @@ namespace Module2HW2
     public class Basket
     {
         private List<Product> _prodInBasket = new List<Product>() { };
-        private static int countId = 1;
 
         public void AddToBasket(Product item)
         {
@@ -28,13 +27,9 @@ namespace Module2HW2
             return _prodInBasket;
         }
 
-        public Order GetOrder()
+        public void CleanBasket()
         {
-            var prod = new List<Product>(_prodInBasket);
-            Order res = new Order(countId, prod);
-            countId++;
             _prodInBasket.Clear();
-            return res;
         }
     }
 }

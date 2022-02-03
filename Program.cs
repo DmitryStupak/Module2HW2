@@ -7,14 +7,13 @@ namespace Module2HW2
     {
         public static void Main(string[] args)
         {
-            Basket basket1 = TakeBasket();
-            basket1.DeleteFromBasket(basket1.GetBasket()[0]);
-            Order order1 = basket1.GetOrder();
-            order1.Print();
-            Console.WriteLine();
-            Basket basket2 = TakeBasket();
-            Order order2 = basket2.GetOrder();
-            order2.Print();
+            Client client = new Client();
+            client.TakeBasket();
+            client.Bas.DeleteFromBasket(client.Bas.GetBasket()[0]);
+            client.GetOrder(client.Bas);
+            Client client1 = new Client();
+            client1.TakeBasket();
+            client1.GetOrder(client1.Bas);
         }
 
         public static List<NameProduct> GetListProd()
@@ -39,18 +38,6 @@ namespace Module2HW2
             };
 
             return listProd;
-        }
-
-        public static Basket TakeBasket()
-        {
-            Random rand = new Random((int)DateTime.Now.Ticks);
-            var res = new Basket();
-            var list = GetListProd();
-            res.AddToBasket(new Product(list[rand.Next(0, list.Count)], rand.Next(1, 10)));
-            res.AddToBasket(new Product(list[rand.Next(0, list.Count)], rand.Next(1, 10)));
-            res.AddToBasket(new Product(list[rand.Next(0, list.Count)], rand.Next(1, 10)));
-
-            return res;
         }
     }
 }
